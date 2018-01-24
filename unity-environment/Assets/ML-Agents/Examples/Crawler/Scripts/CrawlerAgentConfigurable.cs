@@ -16,6 +16,10 @@ public class CrawlerAgentConfigurable: Agent
     [HideInInspector]
     public bool fell;
 
+	[HideInInspector]
+	public bool outofbound=false;
+
+
     Vector3 past_velocity;
 
     Transform body;
@@ -112,45 +116,50 @@ public class CrawlerAgentConfigurable: Agent
         return state;
     }
 
-    public override void AgentStep(float[] act)
-    {
-        for (int k = 0; k < act.Length; k++)
-        {
-            act[k] = Mathf.Max(Mathf.Min(act[k], 1), -1);
-        }
+    public override void AgentStep (float[] act)
+	{
+		for (int k = 0; k < act.Length; k++) {
+			act [k] = Mathf.Max (Mathf.Min (act [k], 1), -1);
+		}
 
-        limbs[0].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[0].transform.right * strength * act[0]);
-        limbs[1].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[1].transform.right * strength * act[1]);
-        limbs[2].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[2].transform.right * strength * act[2]);
-        limbs[3].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[3].transform.right * strength * act[3]);
+		limbs [0].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [0].transform.right * strength * act [0]);
+		limbs [1].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [1].transform.right * strength * act [1]);
+		limbs [2].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [2].transform.right * strength * act [2]);
+		limbs [3].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [3].transform.right * strength * act [3]);
 
-        limbs[0].gameObject.GetComponent<Rigidbody>().AddTorque(-body.transform.up * strength * act[4]);
-        limbs[1].gameObject.GetComponent<Rigidbody>().AddTorque(-body.transform.up * strength * act[5]);
-        limbs[2].gameObject.GetComponent<Rigidbody>().AddTorque(-body.transform.up * strength * act[6]);
-        limbs[3].gameObject.GetComponent<Rigidbody>().AddTorque(-body.transform.up * strength * act[7]);
-
-
-        limbs[4].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[4].transform.right * strength * act[8]);
-        limbs[5].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[5].transform.right * strength * act[9]);
-        limbs[6].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[6].transform.right * strength * act[10]);
-        limbs[7].gameObject.GetComponent<Rigidbody>().AddTorque(-limbs[7].transform.right * strength * act[11]);
+		limbs [0].gameObject.GetComponent<Rigidbody> ().AddTorque (-body.transform.up * strength * act [4]);
+		limbs [1].gameObject.GetComponent<Rigidbody> ().AddTorque (-body.transform.up * strength * act [5]);
+		limbs [2].gameObject.GetComponent<Rigidbody> ().AddTorque (-body.transform.up * strength * act [6]);
+		limbs [3].gameObject.GetComponent<Rigidbody> ().AddTorque (-body.transform.up * strength * act [7]);
 
 
+		limbs [4].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [4].transform.right * strength * act [8]);
+		limbs [5].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [5].transform.right * strength * act [9]);
+		limbs [6].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [6].transform.right * strength * act [10]);
+		limbs [7].gameObject.GetComponent<Rigidbody> ().AddTorque (-limbs [7].transform.right * strength * act [11]);
 
-        float torque_penalty = act[0] * act[0] + act[1] * act[1] + act[2] * act[2] + act[3] * act[3]
-                         + act[4] * act[4] + act[5] * act[5] + act[6] * act[6] + act[7] * act[7]
-                         + act[8] * act[8] + act[9] * act[9] + act[10] * act[10] + act[11] * act[11];
 
-        if (!done)
-        {
 
-            reward = (0
-            - 0.01f * torque_penalty
-            + 1.0f * body.GetComponent<Rigidbody>().velocity.x
-            - 0.05f * Mathf.Abs(body.transform.position.z - body.transform.parent.transform.position.z)
-            - 0.05f * Mathf.Abs(body.GetComponent<Rigidbody>().velocity.y)
-            );
-        }
+		float torque_penalty = act [0] * act [0] + act [1] * act [1] + act [2] * act [2] + act [3] * act [3]
+		                             + act [4] * act [4] + act [5] * act [5] + act [6] * act [6] + act [7] * act [7]
+		                             + act [8] * act [8] + act [9] * act [9] + act [10] * act [10] + act [11] * act [11];
+
+        
+		if (!done) {
+
+			reward = (0
+			- 0.01f * torque_penalty
+			+ 1.0f * body.GetComponent<Rigidbody> ().velocity.x
+			- 0.05f * Mathf.Abs (body.transform.position.z - body.transform.parent.transform.position.z)
+			- 0.05f * Mathf.Abs (body.GetComponent<Rigidbody> ().velocity.y)
+			);
+		}
+
+//		if (Mathf.Abs (relativePoint.x) > 10)
+//		{
+//			outofbound=false;
+//		}
+
         if (fell)
         {
             done = true;
@@ -158,7 +167,16 @@ public class CrawlerAgentConfigurable: Agent
             fell = false;
         }
 
-        Monitor.Log("Reward", reward, MonitorType.slider, body.gameObject.transform);
+
+
+		// Monitor.Log("Velocity", body.GetComponent<Rigidbody>().velocity.x, MonitorType.text, body.gameObject.transform);
+		// //Monitor.Log("Position",Mathf.Abs(body.transform.position.z - body.transform.parent.transform.position.z), MonitorType.text, body.gameObject.transform);
+
+		// Monitor.Log("PositionX",body.transform.localPosition.x, MonitorType.text, body.gameObject.transform);
+		// Monitor.Log("PositionZ",body.transform.localPosition.z, MonitorType.text, body.gameObject.transform);
+
+		// Monitor.Log("outofbound",outofbound, MonitorType.text, body.gameObject.transform);
+
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {
@@ -184,6 +202,8 @@ public class CrawlerAgentConfigurable: Agent
             child.gameObject.GetComponent<Rigidbody>().angularVelocity = default(Vector3);
         }
         gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, Random.value * 90 - 45, 0));
+        //gameObject.transform.rotation = Quaternion.Euler(new Vector3(0,0, 0));
+
     }
 
     public override void AgentOnDone()
