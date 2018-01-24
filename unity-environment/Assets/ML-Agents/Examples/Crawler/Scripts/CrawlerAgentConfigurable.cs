@@ -160,12 +160,12 @@ public class CrawlerAgentConfigurable: Agent
 //			outofbound=false;
 //		}
 
-        if (fell)
-        {
-            done = true;
-            reward = -1;
-            fell = false;
-        }
+//        if (fell)
+//        {
+//            done = true;
+//            reward = -1;
+//            fell = false;
+//        }
 
 
 
