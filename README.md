@@ -1,6 +1,6 @@
 # Reinforcement Learning using Unity ML - Agents
 
-<div display ="block">
+<div display ="block" align="middle">
 <img src="images/ball.gif"  width="200"/>
 <img src="images/curved.gif"  width="200"/>
 <img src="images/twoball.gif"  width="200"/>
