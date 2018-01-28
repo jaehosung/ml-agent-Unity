@@ -1,6 +1,15 @@
-<img src="images/unity-wide.png" align="middle" width="3000"/>
+# Reinforcement Learning using Unity ML - Agents
+
+<div display ="block">
+<img src="images/ball.gif"  width="320"/>
+<img src="images/curved.gif"  width="320"/>
+<img src="images/bounce.gif"  width="320"/>
+</div>
+
 
 # Unity ML - Agents (Beta)
+
+<img src="images/unity-wide.png" align="middle" width="3000"/>
 
 **Unity Machine Learning Agents** allows researchers and developers to
 create games and simulations using the Unity Editor which serve as
