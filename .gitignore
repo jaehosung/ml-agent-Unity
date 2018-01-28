@@ -39,12 +39,6 @@
 /unity-environment/sysinfo.txt
 
 # Builds
-*.apk
-*.unitypackage
-*.app
-*.exe
-*.x86_64
-*.x86
 
 # Tensorflow Sharp Files
 /unity-environment/Assets/ML-Agents/Plugins/Android*
