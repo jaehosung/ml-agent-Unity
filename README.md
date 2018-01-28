@@ -1,6 +1,10 @@
 # Reinforcement Learning using Unity ML - Agents
 
-<img src="images/example.gif"  width="320"/>
+<div display ="block">
+<img src="images/ball.gif"  width="320"/>
+<img src="images/curved.gif"  width="320"/>
+<img src="images/bounce.gif"  width="320"/>
+</div>
 
 
 # Unity ML - Agents (Beta)
