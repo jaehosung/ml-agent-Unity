@@ -1,6 +1,6 @@
 # Reinforcement Learning using Unity ML - Agents
 
-<img src="images/example.gif"  width="3000"/>
+<img src="images/example.gif"  width="320"/>
 
 
 # Unity ML - Agents (Beta)
