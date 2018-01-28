@@ -1,9 +1,9 @@
 # Reinforcement Learning using Unity ML - Agents
 
-<div display ="block">
-<img src="images/ball.gif"  width="300"/>
-<img src="images/curved.gif"  width="300"/>
-<img src="images/twoball.gif"  width="300"/>
+<div display ="block" width = "1000">
+<img src="images/ball.gif"  weight="1"/>
+<img src="images/curved.gif"  weight="1"/>
+<img src="images/twoball.gif"  weight="1"/>
 </div>
 
 
