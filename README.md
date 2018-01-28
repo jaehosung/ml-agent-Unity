@@ -10,8 +10,6 @@ https://youtu.be/NiBTFaEcW5k
 
 # Unity ML - Agents (Beta)
 
-<img src="images/unity-wide.png" align="middle" width="3000"/>
-
 **Unity Machine Learning Agents** allows researchers and developers to
 create games and simulations using the Unity Editor which serve as
 environments where intelligent agents can be trained using
